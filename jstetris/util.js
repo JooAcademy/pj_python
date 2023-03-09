@@ -7,9 +7,9 @@ function logBlockArray(blockArray) {
       x++
     ) {
       if (blockArray[x][y].isExist) {
-        line += "¡à";
+        line += "â–¡";
       } else {
-        line += "¡á";
+        line += "â– ";
       }
     }
     console.log(line);
