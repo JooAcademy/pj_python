@@ -1,6 +1,13 @@
-window.onkeydown = (e) => {
+// window.onkeydown = (e) => {
+//   handleKeyboardEvent(e);
+// };
+
+
+window.onkeydown = function(e) {
   handleKeyboardEvent(e);
-};
+}
+
+
 
 function handleKeyboardEvent(e) {
   if (isGameOver) {
