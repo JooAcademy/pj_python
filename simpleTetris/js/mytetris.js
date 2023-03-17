@@ -257,35 +257,69 @@ class Tetris {
 		}
 	}
 
+	drawStage(){
+		this.clear(this.stageCanvas);
+		let context = this.stageCanvas.getContext("2d");
+		for (let x = 0; x < this.virtualStage.length; x++ ){
+			for (let y = 0; y < this.virtualStage[x].length; y++ ){
+				if (this.virtualStage[x][y] != null){
+					this.drawCell(context,
+						this.stageLeftPadding + ( x * this.cellSize),
+						this.stageTopPadding + (y * this.cellSize),
+						this.cellSize,
+						this.virtualStage[x][y]);
+				}
+			}
+		}	
+	}
 
+	moveLeft () {
+		if (this.checkBlockMove( this.blockX - 1, this.blockY, this.currentBlock, this.blockAngle)){
+			this.blockX--;
+			this.refreshStage();
+		}
+	}
 
+	moveRight(){
+		if(this.checkBlockMove( this.blockX + 1, this.blockY, this.currentBlock, this.blockAngle)){
+			this.blockX++;
+			this.refreshStage();
+		}
+	}
 
+	rotate(){
+		let newAngle;
+		if (this.blockAngle < 3){
+			newAngle = this.blockAngle + 1;
+		}else{
+			newAngle = 0;
+		}
+		if (this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, newAngle)){
+			this.blockAngle = newAngle;
+			this.refreshStage();
+		}
+	}
 
+	fall(){
+		while(this.checkBlockMove(this.blockX, this.blockY +1, this.currenBlock, this.blockAngle)){
+			this.blockY++;
+			this.refreshStage();
+		}
+	}
 
+	refreshStage(){
+		this.clear(this.stageCanvas);
+		this.drawStage();
+		this.drawBlock(this.stageLeftPadding + this.blockX * this.cellSize,
+					this.stageTopPadding + this.blockY * this.cellSize,
+					this.currentBlock, this.blockAngle, this.stageCanvas);
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	clear(canvas){
+		let context = canvas.getContext("2d");
+		context.fillStyle = "rgb(0, 0, 0)";
+		context.fillRect( 0, 0, canvas.width, canvas.height);
+	}
 
 }
+
