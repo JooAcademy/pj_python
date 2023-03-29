@@ -9,7 +9,7 @@ age_list = [500,5,12]
     
 for i, k in enumerate(name_list):
     print("i = ", i, end = '  ')
-    print("k = ", k, end = '좋은 결과 있기를  ')
+    print("k = ", k, end = ' 좋은 결과 있기를  ')
 
 
 

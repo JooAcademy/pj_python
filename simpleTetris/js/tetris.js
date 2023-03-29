@@ -47,7 +47,7 @@ class Tetris {
 
     createBlocks() {
         let blocks = [
-            {   // |
+            {   // I
                 shape: [[[-1, 0], [0, 0], [1, 0], [2, 0]],
                         [[0, -1], [0, 0], [0, 1], [0, 2]],
                         [[-1, 0], [0, 0], [1, 0], [2, 0]],
@@ -318,7 +318,9 @@ class Tetris {
       this.drawStage();
       this.drawBlock(this.stageLeftPadding + this.blockX * this.cellSize,
                 this.stageTopPadding + this.blockY * this.cellSize,
-                this.currentBlock, this.blockAngle, this.stageCanvas);
+                this.currentBlock, 
+                this.blockAngle, 
+                this.stageCanvas);
     }
 
     clear(canvas) {
