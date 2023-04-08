@@ -1,3 +1,4 @@
+// mytetris 파일
 class Tetris {
 	constructor(){
 		this.stageWidth = 10;
@@ -8,44 +9,45 @@ class Tetris {
 		let cellHeight = this.stageCanvas.height / this.stageHeight;
 		this.cellSize = cellWidth < cellHeight ? cellWidth : cellHeight;
 		this.stageLeftPadding = (this.stageCanvas.width - this.cellSize * this.stageWidth) / 2;
-		this.stageTopPadding = (this.stageCanvas.height - this.cellSieze * this.stageHeight) / 2;
+		this.stageTopPadding = (this.stageCanvas.height - this.cellSize * this.stageHeight) / 2;
 		this.blocks = this.createBlocks();
-		this.deleteLines = 0;
+		this.deletedLines = 0;
 
 
-		const tetrisControls = {
-			moveLeft: () => { // move left logic
-			},
-			rotate: () => { // rotate logic
-			},
-			moveRight: () => { // move right logic
-			},
-			fall: () => {// fall logic
-			}
-		}
+		window.onkeydown = (e) => {
+            if (e.keyCode === 37) { // Left Arrow Key
+                this.moveLeft();
+            } else if (e.keyCode === 38) { // Up Arrow Key
+                this.rotate();
+            } else if (e.keyCode === 39) { // Right Arrow Key
+                this.moveRight();
+            } else if (e.keyCode === 40) { // Down Arrow Key
+                this.fall();
+            }
+        }
+	
 
-		window.addEventListener("keydown", (e) => {
-			switch (e.keyCode) {
-				case 37: // Left Arrow Key
-					tetrisControls.moveLeft();
-					break;
-				case 38: // Up Arrow Key
-					tetrisControls.rotate();
-					break;
-				case 39: // Right Arrow Key
-				    tetrisControls.moveRight();
-					break;
-				case 40: // Down Arrow Key
-				    tetrisControls.fall();
-					break;
-				default:
-					break;
-			}
-		});
-
+/*
+	const tetrisMoveLeftButton = document.getElementById("tetris-move-left-button");
+	tetrisMoveLeftButton.addEventListener("mousedown", function() {
+		moveLeft();
+	});
+*/
+        document.getElementById("tetris-move-left-button").onmousedown = (e) => {
+            this.moveLeft();
+        }
+        document.getElementById("tetris-rotate-button").onmousedown = (e) => {
+            this.rotate();
+        }
+        document.getElementById("tetris-move-right-button").onmousedown = (e) => {
+            this.moveRight();
+        }
+        document.getElementById("tetris-fall-button").onmousedown = (e) => {
+            this.fall();
+        }
 	}
 
-	createBlocks(){
+	createBlocks() {
 		let blocks = [
 			{   // |
 				shape:[[[-1, 0], [0, 0], [1, 0], [2, 0]],
@@ -74,7 +76,7 @@ class Tetris {
 				highlight: "rgb(255, 255, 255)",
 				shadow: "rgb(0, 128, 0)"
 			},
-			{   // S
+			{   // revers Z
 				shape:[[[-1, 0], [0, 0], [0, 1], [1,  1]],
 					   [[0, -1], [-1,0], [0, 0], [-1, 1]],
 					   [[-1, 0], [0, 0], [0, 1], [1,  1]],
@@ -92,7 +94,7 @@ class Tetris {
 				highlight : "rgb(255, 255, 255)",
 				shadow : "rgb(0, 0, 128)"
 			},
-			{   // 」
+			{   // reverse L
 				shape: [[[1, -1], [-1, 0], [0, 0], [1, 0]], 
 					    [[0, -1], [0,  0], [0, 1], [1, 1]],
 					    [[-1, 0], [0,  0], [1, 0], [-1,1]],
@@ -140,6 +142,7 @@ class Tetris {
 		context.lineTo(adjustedX + adjustedSize, adjustedY);
 		context.stroke();
 		context.strokeStyle = block.shadow;
+		context.beginPath();
 		context.moveTo(adjustedX, adjustedY + adjustedSize);
 		context.lineTo(adjustedX + adjustedSize, adjustedY + adjustedSize);
 		context.lineTo(adjustedX + adjustedSize, adjustedY);
@@ -159,12 +162,12 @@ class Tetris {
 
 	mainLoop(){
 		if (this.currentBlock == null){
-			if ((!this.createNewBlock()) { return; }
-		}else{
+			if (!this.createNewBlock()) { return; }
+		} else {
 			this.fallBlock();
 		}
 		this.drawStage();
-		if (this.currentBlock !=null){
+		if (this.currentBlock != null){
 			this.drawBlock(this.stageLeftPadding + this.blockX * this.cellSize,
 				this.stageTopPadding + this.blockY * this.cellSize,
 				this.currentBlock, this.blockAngle, this.stageCanvas);
@@ -179,7 +182,7 @@ class Tetris {
 		this.blockY = 0;
 		this.blockAngle = 0;
 		this.drawNextBlock();
-		If(!this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, this.blockAngle)){
+		if(!this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, this.blockAngle)){
 			let messageElem = document.getElementById("message");
 			messageElem.innerText = "GAME OVER";
 			return false;
@@ -206,13 +209,13 @@ class Tetris {
 	}
 
 	checkBlockMove(x, y, type, angle){
-		for (let i =0; i<this.blocks[type];i++) {
+		for (let i =0; i<this.blocks[type].shape[angle].length;i++) {
 			let cellX = x + this.blocks[type].shape[angle][i][0];
 			let cellY = y + this.blocks[type].shape[angle][i][1];
-			if (cellX < 0 || cellX > this.stageWidth -1) {
+			if (cellX < 0 || cellX > this.stageWidth - 1) {
 				return false;
 			}
-			if (cellY > this.stageHeight -1 ) {
+			if (cellY > this.stageHeight - 1 ) {
 				return false;
 			}
 			if (this.virtualStage[cellX][cellY] != null) {
@@ -224,28 +227,28 @@ class Tetris {
 
 	
 	fixBlock(x, y, type, angle){
-		for (let i = 0; i < this.blocks[type].shape[angle].length ; i++ ){
+		for (let i = 0; i < this.blocks[type].shape[angle].length; i++){
 			let cellX = x + this.blocks[type].shape[angle][i][0];
-			let cellY = y + this.blocks[type].shapre[angle][i][1];
-			if (cellY >=0 ){
+			let cellY = y + this.blocks[type].shape[angle][i][1];
+			if (cellY >= 0){
 				this.virtualStage[cellX][cellY] = type;
 			}
 		}
-		for (let y = this.stageHeight -1; y>=0){
+		for (let y = this.stageHeight -1; y >= 0;){
 			let filled = true;
-			for (let x =0; x < this.stageWidth; x++ ){
+			for (let x =0; x < this.stageWidth; x++){
 				if (this.virtualStage[x][y] == null){				
 				filled = false;
 				break;
 				}
 			}						
 			if(filled){
-				for(let y2 = y; y2>0;y2--){
+				for(let y2 = y; y2 > 0; y2--){
 					for (let x =0; x < this.stageWidth; x++){
 						this.virtualStage[x][y2] = this.virtualStage[x][y2 -1];
 					}
 				}
-				for (let x = 0; x < this.stageWidth; x++ ){
+				for (let x = 0; x < this.stageWidth; x++){
 					this.virtualStage[x][0] = null;
 				}
 			let linesElem = document.getElementById("lines");
@@ -257,16 +260,68 @@ class Tetris {
 		}
 	}
 
+	drawStage(){
+		this.clear(this.stageCanvas);
+		let context = this.stageCanvas.getContext("2d");
+		for (let x = 0; x < this.virtualStage.length; x++ ){
+			for (let y = 0; y < this.virtualStage[x].length; y++ ){
+				if (this.virtualStage[x][y] != null){
+					this.drawCell(context,
+						this.stageLeftPadding + ( x * this.cellSize),
+						this.stageTopPadding + (y * this.cellSize),
+						this.cellSize,
+						this.virtualStage[x][y]);
+				}
+			}
+		}	
+	}
 
+	moveLeft() {
+		if (this.checkBlockMove( this.blockX - 1, this.blockY, this.currentBlock, this.blockAngle)){
+			this.blockX--;
+			this.refreshStage();
+		}
+	}
 
-	
+	moveRight(){
+		if(this.checkBlockMove( this.blockX + 1, this.blockY, this.currentBlock, this.blockAngle)){
+			this.blockX++;
+			this.refreshStage();
+		}
+	}
 
+	rotate(){
+		let newAngle;
+		if (this.blockAngle < 3){
+			newAngle = this.blockAngle + 1;
+		}else{
+			newAngle = 0;
+		}
+		if (this.checkBlockMove(this.blockX, this.blockY, this.currentBlock, newAngle)){
+			this.blockAngle = newAngle;
+			this.refreshStage();
+		}
+	}
 
+	fall(){
+		while(this.checkBlockMove(this.blockX, this.blockY +1, this.currenBlock, this.blockAngle)){
+			this.blockY++;
+			this.refreshStage();
+		}
+	}
 
+	refreshStage(){
+		this.clear(this.stageCanvas);
+		this.drawStage();
+		this.drawBlock(this.stageLeftPadding + this.blockX * this.cellSize,
+					this.stageTopPadding + this.blockY * this.cellSize,
+					this.currentBlock, this.blockAngle, this.stageCanvas);
+	}
 
-
-
-
-
+	clear(canvas){
+		let context = canvas.getContext("2d");
+		context.fillStyle = "rgb(0, 0, 0)";
+		context.fillRect( 0, 0, canvas.width, canvas.height);
+	}
 
 }

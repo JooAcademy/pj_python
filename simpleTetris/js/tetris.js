@@ -1,3 +1,4 @@
+//tetris ÌååÏùº
 class Tetris {
     constructor() {
         this.stageWidth = 10;
@@ -46,7 +47,7 @@ class Tetris {
 
     createBlocks() {
         let blocks = [
-            {   // |
+            {   // I
                 shape: [[[-1, 0], [0, 0], [1, 0], [2, 0]],
                         [[0, -1], [0, 0], [0, 1], [0, 2]],
                         [[-1, 0], [0, 0], [1, 0], [2, 0]],
@@ -73,7 +74,7 @@ class Tetris {
                 highlight: "rgb(255, 255, 255)",
                 shadow: "rgb(0, 128, 0)"
             },
-            {   // S
+            {   // revers Z
                 shape: [[[-1, 0], [0, 0], [0, 1], [1, 1]],
                         [[0, -1], [-1, 0], [0, 0], [-1, 1]],
                         [[-1, 0], [0, 0], [0, 1], [1, 1]],
@@ -91,7 +92,7 @@ class Tetris {
                 highlight: "rgb(255, 255, 255)",
                 shadow: "rgb(0, 0, 128)"
             },
-            {   // °π
+            {   // reverse L
                 shape: [[[1, -1], [-1, 0], [0, 0], [1, 0]],
                         [[0, -1], [0, 0], [0, 1], [1, 1]],
                         [[-1, 0], [0, 0], [1, 0], [-1, 1]],
@@ -100,7 +101,7 @@ class Tetris {
                 highlight: "rgb(255, 255, 255)",
                 shadow: "rgb(128, 82, 0)"
             },
-            {   // §«
+            {   // T
                 shape: [[[0, -1], [-1, 0], [0, 0], [1, 0]],
                         [[0, -1], [0, 0], [1, 0], [0, 1]],
                         [[-1, 0], [0, 0], [1, 0], [0, 1]],
@@ -317,7 +318,9 @@ class Tetris {
       this.drawStage();
       this.drawBlock(this.stageLeftPadding + this.blockX * this.cellSize,
                 this.stageTopPadding + this.blockY * this.cellSize,
-                this.currentBlock, this.blockAngle, this.stageCanvas);
+                this.currentBlock, 
+                this.blockAngle, 
+                this.stageCanvas);
     }
 
     clear(canvas) {
