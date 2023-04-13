@@ -5,7 +5,7 @@ print(lang[:6])
 
 
 data = "ABC"
-print(data[:][:][-1])
+print(data[:][-1])
 
 
 
