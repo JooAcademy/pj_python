@@ -97,13 +97,14 @@ BLOCK_DATA = (
     )
 )
 
+
 class Block:
     """ 블록 객체 """
     def __init__(self, count):
-        self.turn = randint(0, 3)
-        self.type = BLOCK_DATA[randint(0, 6)]
-        self.data = self.type[self.turn]
-        self.size = int(sqrt(len(self.data)))
+        self.turn = randint(0, 3)                     # 0 ~ 3까지 랜덤 테트미노 블록의 회전
+        self.type = BLOCK_DATA[randint(0, 6)]         # 0 ~ 6까지 랜덤 테트미노 블록 7개중 1개선택
+        self.data = self.type[self.turn]              # 랜덤으로 나온 테트미노 블록을 회전
+        self.size = int(sqrt(len(self.data)))         # 테트미노의 바닥면 사이즈
         self.xpos = randint(2, 8 - self.size)
         self.ypos = 1 - self.size
         self.fire = count + INTERVAL
