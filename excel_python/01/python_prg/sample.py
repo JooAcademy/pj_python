@@ -1,1 +1,1 @@
-JooAcademy
+print("한글")
