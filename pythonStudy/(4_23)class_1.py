@@ -1,3 +1,5 @@
+### 북수원 도서관 그림으로 배우는 파이썬 기초문법 ###
+
 """
 mario = {'xpos':10, 'ypos':0, 'point':0, 'energy':100}
 
@@ -34,7 +36,7 @@ mario_2p = SuperMario()
 mario_1p.move(20, 0)
 mario_2p.move(30, 0)   
 
-print("mario 1P",mario_1p.xpos, mario_1p.ypos) 
-print("mario 2P",mario_2p.xpos, mario_2p.ypos) 
+print("mario 1P", mario_1p.xpos, mario_1p.ypos) 
+print("mario 2P", mario_2p.xpos, mario_2p.ypos) 
     
  

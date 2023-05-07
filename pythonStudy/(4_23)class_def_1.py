@@ -1,3 +1,4 @@
+### 북수원 도서관 그림으로 배우는 파이썬 기초문법 ###
 def move(data, xoffset, yoffset):
     data['xpos'] += xoffset
     data['ypos'] += yoffset
@@ -17,8 +18,8 @@ move(mario, 20, 0)
 move(mario2, 30, 0)   
 
 
-print("mario 1P",mario['xpos'], mario['ypos']) 
-print("mario 2P",mario2['xpos'], mario2['ypos']) 
+print("mario 1P", mario['xpos'], mario['ypos']) 
+print("mario 2P", mario2['xpos'], mario2['ypos']) 
 
     
        
