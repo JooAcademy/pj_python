@@ -18,6 +18,6 @@ class ClassicCar:
 
 father = ClassicCar("빨간색")
 father.test() #객체 자신을 인수로 넘겨주고 있음
-father.color ="검정색"
+father.color ="파란색"
 father.test()
 
