@@ -7,9 +7,6 @@ def delete_todo(todo_list):
     index = int(user_input)-1
     del todo_list[index]
 
-
-
-
 i = 0
-
+j=0
    
