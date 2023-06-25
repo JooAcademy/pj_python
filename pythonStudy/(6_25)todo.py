@@ -10,4 +10,6 @@ def delete_todo(todo_list):
 
 
 
-    
+i = 0
+
+   
