@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # 텔레그램 봇의 API 토큰 입력
-TOKEN = '7237789333:AAEXcjHUjEN-M32fqLJM3B9vRpHn8lSUXi8'
+TOKEN = ''
 
 # /start 명령어에 대한 핸들러 함수
 def start(update, context):
