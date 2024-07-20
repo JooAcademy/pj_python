@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from telegram import Bot
 
 # 텔레그램 봇의 토큰과 채팅 ID
-TOKEN = '7237789333:AAEXcjHUjEN-M32fqLJM3B9vRpHn8lSUXi8'
-CHAT_ID = '1751952106'
+TOKEN = ''
+CHAT_ID = ''
 
 async def send_hourly_report():
     bot = Bot(token=TOKEN)
