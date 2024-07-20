@@ -4,8 +4,8 @@ from datetime import datetime, time
 from telegram import Bot
 from telegram.ext import Application, CommandHandler, ContextTypes
 
-TOKEN = '7237789333:AAEXcjHUjEN-M32fqLJM3B9vRpHn8lSUXi8'
-CHAT_ID = '1751952106'
+TOKEN = ''
+CHAT_ID = ''
 
 def get_exchange_rates():
     url = 'https://api.exchangerate-api.com/v4/latest/USD'

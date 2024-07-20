@@ -4,7 +4,7 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackContext
 # 텔레그램 봇 토큰 입력
-TOKEN = '7237789333:AAEXcjHUjEN-M32fqLJM3B9vRpHn8lSUXi8'
+TOKEN = ''
 
 async def start(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat_id

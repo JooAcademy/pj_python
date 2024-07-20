@@ -3,7 +3,7 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = '7237789333:AAEXcjHUjEN-M32fqLJM3B9vRpHn8lSUXi8'
+TOKEN = ''
 
 def get_exchange_rates():
     url = 'https://api.exchangerate-api.com/v4/latest/USD'
