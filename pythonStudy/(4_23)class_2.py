@@ -29,14 +29,15 @@ class SuperMario:
     def move(self, xoffset, yoffset):
         self.xpos += xoffset
         self.ypos += yoffset
-    
-mario_1p = SuperMario()  
-mario_2p = SuperMario()       
 
-mario_1p.move(20, 0)
-mario_2p.move(30, 60)   
+if __name__ == "__main__":
+    mario_1p = SuperMario()
+    mario_2p = SuperMario()
 
-print("mario_1P", mario_1p.xpos, mario_1p.ypos) 
-print("mario_2P", mario_2p.xpos, mario_2p.ypos) 
-    
+    mario_1p.move(20, 0)
+    mario_2p.move(30, 0)
+
+    print("mario 1P", mario_1p.xpos, mario_1p.ypos)
+    print("mario 2P", mario_2p.xpos, mario_2p.ypos)
+
  
